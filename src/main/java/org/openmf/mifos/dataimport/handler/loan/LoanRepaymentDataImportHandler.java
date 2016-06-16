@@ -61,7 +61,7 @@ public class LoanRepaymentDataImportHandler extends AbstractDataImportHandler {
     }
         
         private Transaction parseAsLoanRepayment(Row row) {
-        	 String loanAccountIdCheck = readAsInt(LOAN_ACCOUNT_NO_COL, row);
+        	 String loanAccountIdCheck = readAsString(LOAN_ACCOUNT_NO_COL, row);
              if(!loanAccountIdCheck.equals(""))
                 loanAccountId = loanAccountIdCheck;
              String repaymentAmount = readAsDouble(AMOUNT_COL, row).toString();
