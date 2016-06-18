@@ -64,6 +64,9 @@ public class LoanRepaymentDataImportHandler extends AbstractDataImportHandler {
         	 String loanAccountIdCheck = readAsString(LOAN_ACCOUNT_NO_COL, row);
              if(!loanAccountIdCheck.equals(""))
                 loanAccountId = loanAccountIdCheck;
+             
+             String newLoanAccountId =  loanAccountIdCheck.replaceAll("[^0-9]", "");
+     
              String repaymentAmount = readAsDouble(AMOUNT_COL, row).toString();
              String repaymentDate = readAsDate(REPAID_ON_DATE_COL, row);
              String repaymentType = readAsString(REPAYMENT_TYPE_COL, row);
@@ -74,7 +77,7 @@ public class LoanRepaymentDataImportHandler extends AbstractDataImportHandler {
              String receiptNumber = readAsLong(RECEIPT_NO_COL, row);
              String bankNumber = readAsLong(BANK_NO_COL, row);
              return new Transaction(repaymentAmount, repaymentDate, repaymentTypeId, accountNumber,
-             		checkNumber, routingCode, receiptNumber, bankNumber, Integer.parseInt(loanAccountId), "", row.getRowNum());
+             		checkNumber, routingCode, receiptNumber, bankNumber, Integer.parseInt(newLoanAccountId), "", row.getRowNum());
         }
     
     @Override
