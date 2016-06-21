@@ -30,7 +30,7 @@ public class ClientDataImportHandler extends AbstractDataImportHandler {
     private static final int ACTIVATION_DATE_COL = 6;
     private static final int ACTIVE_COL = 7;
     private static final int STATUS_COL = 8;
-
+    
     private List<Client> clients;
     private String clientType;
     

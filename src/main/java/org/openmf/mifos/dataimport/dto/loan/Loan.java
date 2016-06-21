@@ -38,6 +38,8 @@ public class Loan {
 	
 	private final Double interestRatePerPeriod;
 	
+	private final Double flatInterestratePerPeriod;
+	
 	private final String expectedDisbursementDate;
 	
 	private final String amortizationType;
@@ -73,7 +75,7 @@ public class Loan {
 	private final String  linkAccountId;
 	
 	public Loan(String loanType, String clientId, String productId, String loanOfficerId, String submittedOnDate, String fundId, String principal, String numberOfRepayments, String repaymentEvery,
-			String repaymentFrequencyType,  String loanTermFrequency, String loanTermFrequencyType, Double interestRatePerPeriod, String expectedDisbursementDate, String amortizationType,
+			String repaymentFrequencyType,  String loanTermFrequency, String loanTermFrequencyType, Double interestRatePerPeriod, Double flatInterestRatePeriod, String expectedDisbursementDate, String amortizationType,
 			String interestType, String interestCalculationPeriodType, String inArrearsTolerance, String transactionProcessingStrategyId, String graceOnPrincipalPayment,
 			String graceOnInterestPayment, String graceOnInterestCharged, String interestChargedFromDate, String repaymentsStartingFromDate, Integer rowIndex, String status,String externalId,String groupId, List<Charge> charges,String linkAccountId) {
 		this.amortizationType = amortizationType;
@@ -91,6 +93,7 @@ public class Loan {
 		this.interestCalculationPeriodType = interestCalculationPeriodType;
 		this.interestChargedFromDate = interestChargedFromDate;
 		this.interestRatePerPeriod = interestRatePerPeriod;
+		this.flatInterestratePerPeriod = flatInterestRatePeriod;
 		this.interestType = interestType;
 		this.loanOfficerId = loanOfficerId;
 		this.loanTermFrequency = loanTermFrequency;
@@ -155,6 +158,10 @@ public class Loan {
 	
 	public Double getInterestRatePerPeriod() {
 		return interestRatePerPeriod;
+	}
+	
+	public Double getFlatInterestRatePerPeriod(){
+		return flatInterestratePerPeriod;
 	}
 	
 	public String getInterestType() {

@@ -20,7 +20,7 @@ public class Transaction {
 	 private final String dateFormat;
 
 	 private final Locale locale;
-
+	 
 	 private final String accountNumber;
 
 	 private final String routingCode;
@@ -47,12 +47,12 @@ public class Transaction {
 	        this.dateFormat = "dd MMMM yyyy";
 	        this.locale = Locale.ENGLISH;
 	    }
-
+	    
 	    public Transaction(String transactionAmount, String transactionDate, String paymentTypeId, Integer rowIndex) {
 	    	this(transactionAmount, transactionDate, paymentTypeId, "", "", "", "", "", 0, "", rowIndex);
 	    }
 
-	    public String getTransactionAmount() {
+		public String getTransactionAmount() {
 	    	return transactionAmount;
 	    }
 

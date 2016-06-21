@@ -112,8 +112,8 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 	    <div class="stepCount">Step 7:<br/><span>(Optional)</span></div>
 	    <div class="stepContent">
 	    	<p>Download template to help facilitate import of Loan Repayment History.</p>
-		    <form method="get" action="download" >
-		     <input type="hidden" name="template" value="loanRepaymentHistory" > 
+		    <form method="get" action="download" > 
+		    <input type="hidden" name="template" value="loanRepaymentHistory" >
 		     <input type="submit" value="Download" class="btn"  />
 		    </form>
 		    <form method="post" action="import" enctype="multipart/form-data">
@@ -124,14 +124,26 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 	</div>
 	
 	<div class="step clearfix">
-		<div class="stepCount">Step 8:</div> 
+	    <div class="stepCount">Step 8:<br/><span>(Optional)</span></div>
+	    <div class="stepContent">
+	    	<p>Download template to help facilitate import of Bulk Transaction Reversal.</p>
+		    </form>
+		    <form method="post" action="import" enctype="multipart/form-data">
+		            <input type="file" name="file"/>
+		            <input type="submit" class="btn"/>
+			</form>
+		</div>
+	</div>
+	
+	<div class="step clearfix">
+		<div class="stepCount">Step 9:</div> 
 		<div class="stepContent">
 			<p>Enter your Savings Product configuration (Administration -&gt; Organisation) through the UI.</p>
 		</div>
 	</div>
 	
 	<div class="step clearfix">
-		<div class="stepCount">Step 9:</div> 
+		<div class="stepCount">Step 10:</div> 
 		<div class="stepContent">
 			<p>Download template to help facilitate Savings Import. </p>
 		    <p>For quick import of current balances of each savings account, enter the current balance as Minimum Required Opening Balance
@@ -148,7 +160,7 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 	</div>
 	
 	<div class="step clearfix">
-	    <div class="stepCount">Step 10:<br/><span>(Optional)</span></div>
+	    <div class="stepCount">Step 11:<br/><span>(Optional)</span></div>
 	    <div class="stepContent">
 		    <p>Download template to help facilitate import of Savings Transaction History.</p>
 		    <form method="get" action="download" >
@@ -163,14 +175,14 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 	</div>
 	
 	<div class="step clearfix">
-		<div class="stepCount">Step 11:</div> 
+		<div class="stepCount">Step 12:</div> 
 		<div class="stepContent">
 			<p>Enter your Fixed Deposit Product configuration (Administration -&gt; Organisation) through the UI.</p>
 		</div>
 	</div>
 	
 	<div class="step clearfix">
-		<div class="stepCount">Step 12:</div> 
+		<div class="stepCount">Step 13:</div> 
 		<div class="stepContent">
 			<p>Download template to help facilitate Fixed Deposit Import. </p>
 		    <form method="get" action="download" >
@@ -185,14 +197,14 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 	</div>
 	
 		<div class="step clearfix">
-		<div class="stepCount">Step 13:</div> 
+		<div class="stepCount">Step 14:</div> 
 		<div class="stepContent">
 			<p>Enter your Recurring Deposit Product configuration (Administration -&gt; Organisation) through the UI.</p>
 		</div>
 	</div>
 	
 	<div class="step clearfix">
-		<div class="stepCount">Step 14:</div> 
+		<div class="stepCount">Step 15:</div> 
 		<div class="stepContent">
 			<p>Download template to help facilitate Recurring Deposit Import. </p>
 		    <form method="get" action="download" >
@@ -207,7 +219,7 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 	</div>
 	
 	<div class="step clearfix">
-	    <div class="stepCount">Step 15:<br/><span>(Optional)</span></div>
+	    <div class="stepCount">Step 16:<br/><span>(Optional)</span></div>
 	    <div class="stepContent">
 		    <p>Download template to help facilitate import of Recurring Deposit Account Transaction  History.</p>
 		    <form method="get" action="download" >
@@ -221,7 +233,7 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 		</div>
 	</div>
 	<div class="step clearfix">
-	    <div class="stepCount">Step 16:<br/><span>(Optional)</span></div>
+	    <div class="stepCount">Step 17:<br/><span>(Optional)</span></div>
 	    <div class="stepContent">
 		    <p>Download template to help facilitate import of Closing of savings account.</p>
 		    <form method="get" action="download" >
@@ -235,7 +247,7 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 		</div>
 	</div>
 	<div class="step clearfix">
-		<div class="stepCount">Step 17:</div> 
+		<div class="stepCount">Step 18:</div> 
 		<div class="stepContent">
 			<p>Download template to help Add Journal Entries. </p>
 		    <form method="get" action="download" >
@@ -249,7 +261,7 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 		</div>
 		</div>
 		<div class="step clearfix">
-		<div class="stepCount">Step :18</div> 
+		<div class="stepCount">Step :19</div> 
 		<div class="stepContent">
 			<p>Download template to help Add Guarantor. </p>
 		    <form method="get" action="download" >
