@@ -83,6 +83,27 @@ public class MifosRestClient implements RestClient {
     }
     
     @Override
+    public String put(String path, String payload) {
+        String url = baseURL + path;
+        try {
+
+                SimpleHttpResponse response = new HttpRequestBuilder().withURL(url).withMethod(Method.PUT)
+                                .addHeader(Header.AUTHORIZATION, "Basic " + authToken)
+                                .addHeader(Header.CONTENT_TYPE, "application/json; charset=utf-8")
+                                .addHeader(Header.FINERACT_TENANT_ID, tenantId)
+                                .withContent(payload).execute();
+                String content = readContentAndClose(response.getContent());
+            if (response.getStatus() != HttpURLConnection.HTTP_OK) 
+              { 
+            	throw new IllegalStateException(content);
+              }
+            return content;
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+    
+    @Override
     public String get(String path) {
     	String url = baseURL + path;
     	try {

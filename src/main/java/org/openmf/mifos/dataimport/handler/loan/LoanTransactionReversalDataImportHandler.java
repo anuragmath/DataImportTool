@@ -61,14 +61,19 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
 		String loanAccountIdCheck = readAsString(LOAN_ACCOUNT_NO_COL, row);
 		String newLoanAccountId =  loanAccountIdCheck.replaceAll("[^0-9]", "");
 	    String repaymentAmount;
+	    String status;
 	    String pdcStatus = readAsInt(PDC_STATUS_COL, row).toString();
-	    if(pdcStatus.equals("Bounced"))
+	    if(pdcStatus.equals("Bounced")){
 	    	repaymentAmount= "0";
-	    else
+	    	status = "3";
+	    }
+	    else{
 	    	repaymentAmount = readAsDouble(AMOUNT_COL, row).toString();
+	    	status = "2";
+	    }
         String transactionId = readAsLong(TRANSACTION_ID_COL, row).toString();
         String transactionDate = readAsDate(TRANSACTION_DATE_COL, row);
-        return new Undo(repaymentAmount, transactionDate, Integer.parseInt(newLoanAccountId), Integer.parseInt(transactionId), row.getRowNum());
+        return new Undo(repaymentAmount, transactionDate, Integer.parseInt(newLoanAccountId), Integer.parseInt(transactionId), Integer.parseInt(status), row.getRowNum());
         
 	}
 	
@@ -84,7 +89,7 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
         		if(loanTransactionReversal.getTransactionAmount().equals("0"))
         			restClient.post("loans/" + loanTransactionReversal.getAccountId() + "/transactions/" + loanTransactionReversal.getTransactionId() + "?command=undo", payload);
         		else
-        			restClient.post("loans/" + loanTransactionReversal.getAccountId() + "/transactions/" + loanTransactionReversal.getTransactionId() + "?command=modify", payload);
+        			restClient.put("loans/" + loanTransactionReversal.getAccountId() + "/transactions/" + loanTransactionReversal.getTransactionId() , payload);
         		Cell statusCell = loanTransactionReversalSheet.getRow(loanTransactionReversal.getRowIndex()).createCell(STATUS_COL);
                 statusCell.setCellValue("Imported");
                 statusCell.setCellStyle(getCellStyle(workbook, IndexedColors.LIGHT_GREEN));

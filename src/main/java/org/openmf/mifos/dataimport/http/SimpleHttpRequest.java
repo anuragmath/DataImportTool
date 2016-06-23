@@ -15,7 +15,7 @@ public class SimpleHttpRequest {
     private final HttpURLConnection connection;
 
     public static enum Method {
-        GET, POST;
+        GET, POST, PUT;
     }
 
     public SimpleHttpRequest(String url, Method method, Map<String, String> headers, String content) throws IOException {
