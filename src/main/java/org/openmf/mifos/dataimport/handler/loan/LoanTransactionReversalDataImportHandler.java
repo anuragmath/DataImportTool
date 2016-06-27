@@ -24,11 +24,12 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
 	private static final int LOAN_ACCOUNT_NO_COL = 0;
 	private static final int TRANSACTION_ID_COL = 1;
 	private static final int AMOUNT_COL = 3;
-	private static final int BANK_NAME_COL = 4;
-	private static final int CHEQUE_NO_COL = 5;
-	private static final int PDC_STATUS_COL = 6;
+	private static final int REPAYMENT_TYPE_COL = 4;
+	private static final int BANK_NAME_COL = 5;
+	private static final int CHEQUE_NO_COL = 6;
+	private static final int REPAYMENT_STATUS_COL = 7;
 	private static final int TRANSACTION_DATE_COL = 2; 
-	private static final int STATUS_COL = 7;
+	private static final int STATUS_COL = 8;
 	
 	public LoanTransactionReversalDataImportHandler(Workbook workbook, RestClient client) {
 		this.restClient = client;
@@ -62,14 +63,14 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
 		String newLoanAccountId =  loanAccountIdCheck.replaceAll("[^0-9]", "");
 	    String repaymentAmount;
 	    String status;
-	    String pdcStatus = readAsInt(PDC_STATUS_COL, row).toString();
-	    if(pdcStatus.equals("Bounced")){
-	    	repaymentAmount= "0";
-	    	status = "3";
-	    }
-	    else{
+	    String pdcStatus = readAsInt(REPAYMENT_STATUS_COL, row).toString();
+	    if(pdcStatus.equals("Cleared")){
 	    	repaymentAmount = readAsDouble(AMOUNT_COL, row).toString();
 	    	status = "2";
+	    }
+	    else{
+	    	repaymentAmount= "0";
+	    	status = "3";
 	    }
         String transactionId = readAsLong(TRANSACTION_ID_COL, row).toString();
         String transactionDate = readAsDate(TRANSACTION_DATE_COL, row);

@@ -143,7 +143,7 @@ public class LoanDataImportHandler extends AbstractDataImportHandler {
             loanTermFrequencyId = "1";
         else if (loanTermFrequency.equalsIgnoreCase("Months")) loanTermFrequencyId = "2";
         Double nominalInterestRate = readAsDouble(NOMINAL_INTEREST_RATE_COL, row);
-        Double flatInterestRate = readAsDouble(FLAT_INTEREST_RATE, row);
+        Double flatInterestRatePerPeriod = readAsDouble(FLAT_INTEREST_RATE, row);
         String amortization = readAsString(AMORTIZATION_COL, row);
         String amortizationId = "";
         if (amortization.equalsIgnoreCase("Equal principal payments"))
@@ -202,21 +202,21 @@ public class LoanDataImportHandler extends AbstractDataImportHandler {
         if (loanType.equals("individual")) {
             String clientId = getIdByName(workbook.getSheet("Clients"), clientOrGroupName).toString();
             return new Loan(loanType, clientId, productId, loanOfficerId, submittedOnDate, fundId, principal, numberOfRepayments,
-                    repaidEvery, repaidEveryFrequencyId, loanTerm, loanTermFrequencyId, nominalInterestRate,flatInterestRate, submittedOnDate,
+                    repaidEvery, repaidEveryFrequencyId, loanTerm, loanTermFrequencyId, nominalInterestRate,flatInterestRatePerPeriod, submittedOnDate,
                     amortizationId, interestMethodId, interestCalculationPeriodId, arrearsTolerance, repaymentStrategyId,
                     graceOnPrincipalPayment, graceOnInterestPayment, graceOnInterestCharged, interestChargedFromDate, firstRepaymentOnDate,
                     row.getRowNum(), status, externalId, null, charges, linkAccountId);
         } else if (loanType.equals("jlg")) {
             String clientId = getIdByName(workbook.getSheet("Clients"), clientOrGroupName).toString();
             return new Loan(loanType, clientId, productId, loanOfficerId, submittedOnDate, fundId, principal, numberOfRepayments,
-                    repaidEvery, repaidEveryFrequencyId, loanTerm, loanTermFrequencyId, nominalInterestRate, flatInterestRate, submittedOnDate,
+                    repaidEvery, repaidEveryFrequencyId, loanTerm, loanTermFrequencyId, nominalInterestRate, flatInterestRatePerPeriod, submittedOnDate,
                     amortizationId, interestMethodId, interestCalculationPeriodId, arrearsTolerance, repaymentStrategyId,
                     graceOnPrincipalPayment, graceOnInterestPayment, graceOnInterestCharged, interestChargedFromDate, firstRepaymentOnDate,
                     row.getRowNum(), status, externalId, groupId, charges, linkAccountId);
         } else {
             String groupIdforGroupLoan = getIdByName(workbook.getSheet("Groups"), clientOrGroupName).toString();
             return new GroupLoan(loanType, groupIdforGroupLoan, productId, loanOfficerId, submittedOnDate, fundId, principal,
-                    numberOfRepayments, repaidEvery, repaidEveryFrequencyId, loanTerm, loanTermFrequencyId, nominalInterestRate, flatInterestRate,
+                    numberOfRepayments, repaidEvery, repaidEveryFrequencyId, loanTerm, loanTermFrequencyId, nominalInterestRate, flatInterestRatePerPeriod,
                     submittedOnDate, amortizationId, interestMethodId, interestCalculationPeriodId, arrearsTolerance, repaymentStrategyId,
                     graceOnPrincipalPayment, graceOnInterestPayment, graceOnInterestCharged, interestChargedFromDate, firstRepaymentOnDate,
                     row.getRowNum(), status, externalId, linkAccountId);
