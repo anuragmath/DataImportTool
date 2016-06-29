@@ -11,6 +11,7 @@ import org.openmf.mifos.dataimport.populator.loan.AddGuarantorWorkbookPopulator;
 import org.openmf.mifos.dataimport.populator.loan.LoanProductSheetPopulator;
 import org.openmf.mifos.dataimport.populator.loan.LoanRepaymentWorkbookPopulator;
 import org.openmf.mifos.dataimport.populator.loan.LoanWorkbookPopulator;
+import org.openmf.mifos.dataimport.populator.loan.PdcWorkbookPopulator;
 import org.openmf.mifos.dataimport.populator.savings.ClosingOfSavingsAccountsWorkbookPopulator;
 import org.openmf.mifos.dataimport.populator.savings.FixedDepositProductSheetPopulator;
 import org.openmf.mifos.dataimport.populator.savings.FixedDepositWorkbookPopulator;
@@ -39,6 +40,8 @@ public class WorkbookPopulatorFactory {
 	        			 new PersonnelSheetPopulator(Boolean.TRUE, restClient), new LoanProductSheetPopulator(restClient), new ExtrasSheetPopulator(restClient));
 	        else if(template.trim().equals("loanRepaymentHistory"))
 	        	 return new LoanRepaymentWorkbookPopulator(restClient, new OfficeSheetPopulator(restClient), new ClientSheetPopulator(restClient), new ExtrasSheetPopulator(restClient));
+	        else if(template.trim().equals("bulkPDCuploadSheet"))
+	        	 return new PdcWorkbookPopulator(restClient, new ExtrasSheetPopulator(restClient));
 	        else if(template.trim().equals("savings"))
 	        	 return new SavingsWorkbookPopulator(new OfficeSheetPopulator(restClient), new ClientSheetPopulator(restClient), new GroupSheetPopulator(restClient),
 	        			 new PersonnelSheetPopulator(Boolean.TRUE, restClient), new SavingsProductSheetPopulator(restClient));

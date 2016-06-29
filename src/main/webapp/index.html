@@ -52,7 +52,7 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 		</div>
 	</div>
 	
-	<div class="step clearfix">
+<!-- 	<div class="step clearfix">
 		<div class="stepCount">Step 3:</div> 
 		<div class="stepContent">
 			<p>Download template to help facilitate Centers Import.</p>
@@ -66,8 +66,8 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 			</form>
 		</div>
 	</div>
-	
-	<div class="step clearfix">
+ -->	
+	<!-- <div class="step clearfix">
 		<div class="stepCount">Step 4:</div> 
 		<div class="stepContent">
 			<p>Download template to help facilitate Groups Import.</p>
@@ -81,7 +81,7 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 			</form>
 		</div>
 	</div>	
-	
+ -->	
 	<div class="step clearfix">
 		<div class="stepCount">Step 5:</div> 
 		<div class="stepContent">
@@ -126,8 +126,22 @@ fieldset {border: 0;margin: 0 0 15px 0;}
 	<div class="step clearfix">
 	    <div class="stepCount">Step 8:<br/><span>(Optional)</span></div>
 	    <div class="stepContent">
-	    	<p>Download template to help facilitate import of Bulk Transaction Reversal.</p>
+	    	<p>Download template to help facilitate import of Bulk PDC Upload.</p>
+		     <form method="get" action="download" > 
+		     <input type="hidden" name="template" value="bulkPDCuploadSheet" >
+		     <input type="submit" value="Download" class="btn"  />
 		    </form>
+		    <form method="post" action="import" enctype="multipart/form-data">
+		            <input type="file" name="file"/>
+		            <input type="submit" class="btn"/>
+			</form>
+		</div>
+	</div>
+	
+	<div class="step clearfix">
+	    <div class="stepCount">Step 8:<br/><span>(Optional)</span></div>
+	    <div class="stepContent">
+	    	<p>Download template to help facilitate import of Bulk Transaction Reversal.</p>
 		    <form method="post" action="import" enctype="multipart/form-data">
 		            <input type="file" name="file"/>
 		            <input type="submit" class="btn"/>

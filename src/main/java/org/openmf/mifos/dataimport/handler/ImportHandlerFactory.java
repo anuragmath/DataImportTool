@@ -8,6 +8,7 @@ import org.openmf.mifos.dataimport.handler.client.CenterDataImportHandler;
 import org.openmf.mifos.dataimport.handler.client.ClientDataImportHandler;
 import org.openmf.mifos.dataimport.handler.client.GroupDataImportHandler;
 import org.openmf.mifos.dataimport.handler.loan.AddGuarantorDataImportHandler;
+import org.openmf.mifos.dataimport.handler.loan.AddPaymentInventoryImportHandler;
 import org.openmf.mifos.dataimport.handler.loan.LoanDataImportHandler;
 import org.openmf.mifos.dataimport.handler.loan.LoanRepaymentDataImportHandler;
 import org.openmf.mifos.dataimport.handler.loan.LoanTransactionReversalDataImportHandler;
@@ -36,7 +37,9 @@ public class ImportHandlerFactory {
         	    return new LoanRepaymentDataImportHandler(workbook, new MifosRestClient());
         } else if(workbook.getSheetIndex("LoanTransactionReversal") == 0) {
         	return new LoanTransactionReversalDataImportHandler(workbook, new MifosRestClient());
-        }else if(workbook.getSheetIndex("Savings") == 0) {
+        } else if(workbook.getSheetIndex("AddPaymentInventory") == 0) {
+        	return new AddPaymentInventoryImportHandler(workbook, new MifosRestClient());
+        } else if(workbook.getSheetIndex("Savings") == 0) {
     	    return new SavingsDataImportHandler(workbook, new MifosRestClient());
         } else if(workbook.getSheetIndex("SavingsTransaction") == 0) {
     	    return new SavingsTransactionDataImportHandler(workbook, new MifosRestClient());
@@ -53,8 +56,6 @@ public class ImportHandlerFactory {
         }else if(workbook.getSheetIndex("guarantor") == 0) {
         	return new AddGuarantorDataImportHandler(workbook, new MifosRestClient());
         }
-        
-        
         
         throw new IllegalArgumentException("No work sheet found for processing : active sheet " + workbook.getSheetName(0));
     }
