@@ -1,7 +1,5 @@
 package org.openmf.mifos.dataimport.dto;
 
-import java.time.LocalDate;
-
 public class PdcPaymentInventory {
 	
 	private final String nameOfBank;
@@ -12,25 +10,37 @@ public class PdcPaymentInventory {
 	private final int presentationStatus;
 	private final String date;
 	private final Integer period;
+	private final String branchName;
+	private final String micrCode;
 	private final String chequeNo;
 	
-	public PdcPaymentInventory(String nameOfBank, String ifscCode, String chequeDate, Double amount, String chequeNo) {
+	public PdcPaymentInventory(String nameOfBank, String branchName, String ifscCode, String micrCode, String chequeDate, Double amount, String chequeNo, int chequeStatus) {
 		super();
 		this.nameOfBank = nameOfBank;
+		this.branchName = branchName;
 		this.ifscCode = ifscCode;
+		this.micrCode = micrCode;
 		this.chequeDate = chequeDate;
 		this.amount = amount;
 		this.chequeNo = chequeNo;
 		this.makePresentation = false;
-		this.presentationStatus = 1;
+		this.presentationStatus = chequeStatus;
 		this.date = chequeDate;
-		this.period = 1;
+		this.period = 0;
 	}
 
 	public String getNameOfBank() {
 		return nameOfBank;
 	}
 
+	public String getBranchName() {
+		return branchName;
+	}
+	
+	public String getMicrCode() {
+		return micrCode;
+	}
+	
 	public String getIfscCode() {
 		return ifscCode;
 	}

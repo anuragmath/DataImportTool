@@ -66,11 +66,11 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
 	    String pdcStatus = readAsInt(REPAYMENT_STATUS_COL, row).toString();
 	    if(pdcStatus.equals("Cleared")){
 	    	repaymentAmount = readAsDouble(AMOUNT_COL, row).toString();
-	    	status = "2";
+	    	status = "4";
 	    }
 	    else{
 	    	repaymentAmount= "0";
-	    	status = "3";
+	    	status = "5";
 	    }
         String transactionId = readAsLong(TRANSACTION_ID_COL, row).toString();
         String transactionDate = readAsDate(TRANSACTION_DATE_COL, row);

@@ -94,20 +94,39 @@ public class AddPaymentInventoryImportHandler extends AbstractDataImportHandler 
 
 	private PdcPaymentInventory parseAsPdcPaymentInventory(Row row) {
 		Double chequeAmount;
+		String chequeDate;
+		int presentationStatus;
 		String bankName = readAsString(BANK_NAME_COL, row);
 		String chequeNo = readAsString(CHEQUE_NO_COL, row);
-		String chequeDate = readAsDate(CHEQUE_DATE_COL, row);
-		/*if(chequeDate.equals(""))
-			chequeDate = ;*/
+		String date = readAsDate(CHEQUE_DATE_COL, row);
+		String branchName = readAsString(BRANCH_NAME_COL, row);
 		String amount = readAsString(CHEQUE_VALUE_COL, row);
 		String ifscCode = readAsString(IFSC_CODE_COL, row);
-		
+		String micrCode = readAsString(MICR_CODE_COL, row);
+		String chequeStatus = readAsString(CHEQUE_STATUS_COL, row);
+		if(chequeStatus.equals("Not Received"))
+				presentationStatus = 1;
+		else if(chequeStatus.equals("Verified And Received"))
+				presentationStatus = 2;
+		else if(chequeStatus.equals("Banked And In Progress"))
+			presentationStatus = 3;
+		else if(chequeStatus.equals("Banked And Cleared"))
+			presentationStatus = 4;
+		else if(chequeStatus.equals("Banked And Bounced"))
+			presentationStatus = 5;
+		else 
+			presentationStatus = 1;
+			
+		if(date.equals("NA"))
+			chequeDate = null;
+		else
+			chequeDate = date;
 		if(amount.equals("NA"))
-			chequeAmount = Double.parseDouble("0");
+			chequeAmount = null;
 		else
 			chequeAmount = Double.parseDouble(amount);
 		
-		return new PdcPaymentInventory(bankName, ifscCode, chequeDate, chequeAmount, chequeNo);
+		return new PdcPaymentInventory(bankName, branchName, ifscCode, micrCode, chequeDate, chequeAmount, chequeNo, presentationStatus);
 	}
 
 	private PaymentInventory parseAsPaymentInventory(Row row, List<PdcPaymentInventory> pdcArray ) {
