@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.openmf.mifos.dataimport.dto.Transaction;
 import org.openmf.mifos.dataimport.dto.Undo;
 import org.openmf.mifos.dataimport.handler.AbstractDataImportHandler;
 import org.openmf.mifos.dataimport.handler.Result;
@@ -23,12 +22,12 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
 	
 	private static final int LOAN_ACCOUNT_NO_COL = 0;
 	private static final int TRANSACTION_ID_COL = 1;
+	private static final int TRANSACTION_DATE_COL = 2; 
 	private static final int AMOUNT_COL = 3;
 	private static final int REPAYMENT_TYPE_COL = 4;
 	private static final int BANK_NAME_COL = 5;
 	private static final int CHEQUE_NO_COL = 6;
 	private static final int REPAYMENT_STATUS_COL = 7;
-	private static final int TRANSACTION_DATE_COL = 2; 
 	private static final int STATUS_COL = 8;
 	
 	public LoanTransactionReversalDataImportHandler(Workbook workbook, RestClient client) {
@@ -61,19 +60,19 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
 		
 		String loanAccountIdCheck = readAsString(LOAN_ACCOUNT_NO_COL, row);
 		String newLoanAccountId =  loanAccountIdCheck.replaceAll("[^0-9]", "");
+		String transactionId = readAsLong(TRANSACTION_ID_COL, row).toString();
+	    String transactionDate = readAsString(TRANSACTION_DATE_COL, row);
 	    String repaymentAmount;
 	    String status;
 	    String pdcStatus = readAsInt(REPAYMENT_STATUS_COL, row).toString();
 	    if(pdcStatus.equals("Cleared")){
 	    	repaymentAmount = readAsDouble(AMOUNT_COL, row).toString();
-	    	status = "4";
+	    	status = "2";
 	    }
 	    else{
 	    	repaymentAmount= "0";
-	    	status = "5";
+	    	status = "3";
 	    }
-        String transactionId = readAsLong(TRANSACTION_ID_COL, row).toString();
-        String transactionDate = readAsDate(TRANSACTION_DATE_COL, row);
         return new Undo(repaymentAmount, transactionDate, Integer.parseInt(newLoanAccountId), Integer.parseInt(transactionId), Integer.parseInt(status), row.getRowNum());
         
 	}
@@ -97,7 +96,7 @@ public class LoanTransactionReversalDataImportHandler extends AbstractDataImport
             } catch (Exception e) {
             	Cell loanAccountIdCell = loanTransactionReversalSheet.getRow(loanTransactionReversal.getRowIndex()).createCell(LOAN_ACCOUNT_NO_COL);
                 loanAccountIdCell.setCellValue(loanTransactionReversal.getAccountId());
-            	String message = parseStatus(e.getMessage());
+             	String message = parseStatus(e.getMessage());
             	Cell statusCell = loanTransactionReversalSheet.getRow(loanTransactionReversal.getRowIndex()).createCell(STATUS_COL);
             	statusCell.setCellValue(message);
                 statusCell.setCellStyle(getCellStyle(workbook, IndexedColors.RED));
